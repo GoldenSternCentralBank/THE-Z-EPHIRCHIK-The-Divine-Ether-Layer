@@ -1,4 +1,4 @@
-# EFIRCHIK: The Divine Ether Layer
+# THE (Z) EFIRCHIK: The Divine Ether Layer
 
 A mythological bridge between mortal backends and the divine blockchain realm.
 
