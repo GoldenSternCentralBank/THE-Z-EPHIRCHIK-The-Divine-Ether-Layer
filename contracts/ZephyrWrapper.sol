@@ -14,7 +14,7 @@ import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 contract ZephyrWrapper is Pausable, Ownable, ReentrancyGuard {
     // Events
     event Offering(address indexed mortal, address indexed tokenAddress, uint256 amount, string txHash);
-    event Blessing(address indexed mortal, address indexed tokenAddress, uint256 amount, string reference);
+    event Blessing(address indexed mortal, address indexed tokenAddress, uint256 amount, string referenceId);
     
     // Mapping to prevent transaction hash reuse
     mapping(string => bool) private _processedOfferings;
@@ -147,13 +147,13 @@ contract ZephyrWrapper is Pausable, Ownable, ReentrancyGuard {
      * @param tokenAddress The address of the token
      * @param mortal Address to receive tokens
      * @param amount Amount of tokens to bestow
-     * @param reference Divine reference for the blessing
+     * @param referenceId Divine reference for the blessing
      */
     function blessWithTokens(
         address tokenAddress,
         address mortal, 
         uint256 amount, 
-        string calldata reference
+        string calldata referenceId
     ) 
         external 
         onlyHermes 
@@ -175,7 +175,7 @@ contract ZephyrWrapper is Pausable, Ownable, ReentrancyGuard {
         require(success, "The blessing was interrupted");
         
         // Emit event
-        emit Blessing(mortal, tokenAddress, amount, reference);
+        emit Blessing(mortal, tokenAddress, amount, referenceId);
     }
     
     /**
